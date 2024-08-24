@@ -17,51 +17,43 @@ $num = $stmt->rowCount();
 
 ?>
 
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lista de Produtos</title>
-</head>
-<body>
-    <?php include '../../utils/menu.php'; ?>
 
-    <h1>Lista de Produtos</h1>
+<?php include '../../utils/header.php'; ?>
+<?php include '../../utils/menu.php'; ?>
 
-    <?php
-    if ($num > 0) {
-        echo "<table border='1'>";
+<h1>Lista de Produtos</h1>
+
+<?php
+if ($num > 0) {
+    echo "<table border='1'>";
+    echo "<tr>";
+    echo "<th>ID</th>";
+    echo "<th>Nome</th>";
+    echo "<th>Descrição</th>";
+    echo "<th>Preço</th>";
+    echo "<th>Ações</th>";
+    echo "</tr>";
+
+    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+        extract($row);
+
         echo "<tr>";
-        echo "<th>ID</th>";
-        echo "<th>Nome</th>";
-        echo "<th>Descrição</th>";
-        echo "<th>Preço</th>";
-        echo "<th>Ações</th>";
+        echo "<td>{$pro_id}</td>";
+        echo "<td>{$pro_nome}</td>";
+        echo "<td>{$pro_descricao}</td>";
+        echo "<td>R$ {$pro_preco}</td>";
+        echo "<td>";
+        echo "<a href='produtoDetail.php?id={$pro_id}'>Detalhes</a> | ";
+        echo "<a href='produtoUpdate.php?id={$pro_id}'>Editar</a> | ";
+        echo "<a href='produtoDelete.php?id={$pro_id}'>Excluir</a>";
+        echo "</td>";
         echo "</tr>";
-
-        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-            extract($row);
-
-            echo "<tr>";
-            echo "<td>{$pro_id}</td>";
-            echo "<td>{$pro_nome}</td>";
-            echo "<td>{$pro_descricao}</td>";
-            echo "<td>R$ {$pro_preco}</td>";
-            echo "<td>";
-            echo "<a href='produtoDetail.php?id={$pro_id}'>Detalhes</a> | ";
-            echo "<a href='produtoUpdate.php?id={$pro_id}'>Editar</a> | ";
-            echo "<a href='produtoDelete.php?id={$pro_id}'>Excluir</a>";
-            echo "</td>";
-            echo "</tr>";
-        }
-
-        echo "</table>";
-    } else {
-        echo "<p>Nenhum produto cadastrado.</p>";
     }
-    ?>
 
-    <?php include '../../utils/footer.php'; ?>
-</body>
-</html>
+    echo "</table>";
+} else {
+    echo "<p>Nenhum produto cadastrado.</p>";
+}
+?>
+
+<?php include '../../utils/footer.php'; ?>

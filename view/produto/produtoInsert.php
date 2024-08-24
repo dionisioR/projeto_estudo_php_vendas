@@ -26,14 +26,8 @@ if ($_POST) {
 }
 ?>
 
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inserir Produto</title>
-</head>
-<body>
+
+    <?php include '../../utils/header.php'; ?>
     <?php include '../../utils/menu.php'; ?>
 
     <h1>Inserir Produto</h1>
@@ -52,5 +46,3 @@ if ($_POST) {
     </form>
 
     <?php include '../../utils/footer.php'; ?>
-</body>
-</html>

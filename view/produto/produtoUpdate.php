@@ -38,14 +38,8 @@ if (isset($_GET['id'])) {
 }
 ?>
 
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Atualizar Produto</title>
-</head>
-<body>
+
+    <?php include '../../utils/header.php'; ?>
     <?php include '../../utils/menu.php'; ?>
 
     <h1>Atualizar Produto</h1>
@@ -64,5 +58,3 @@ if (isset($_GET['id'])) {
     </form>
 
     <?php include '../../utils/footer.php'; ?>
-</body>
-</html>
