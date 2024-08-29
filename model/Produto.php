@@ -9,6 +9,7 @@ class Produto {
     public $pro_nome;
     public $pro_descricao;
     public $pro_preco;
+    public $pro_url;
 
     public function __construct($db) {
         $this->conn = $db;
@@ -16,7 +17,7 @@ class Produto {
 
     // Criar Produto
     public function create() {
-        $query = "INSERT INTO " . $this->table_name . " (pro_nome, pro_descricao, pro_preco) VALUES (:nome, :descricao, :preco)";
+        $query = "INSERT INTO " . $this->table_name . " (pro_nome, pro_descricao, pro_preco, pro_url) VALUES (:nome, :descricao, :preco, :url)";
         
         $stmt = $this->conn->prepare($query);
 
@@ -24,6 +25,7 @@ class Produto {
         $stmt->bindParam(":nome", $this->pro_nome);
         $stmt->bindParam(":descricao", $this->pro_descricao);
         $stmt->bindParam(":preco", $this->pro_preco);
+        $stmt->bindParam(":url", $this->pro_url);
 
         // Executa a query
         if ($stmt->execute()) {
@@ -56,17 +58,19 @@ class Produto {
         $this->pro_nome = $row['pro_nome'];
         $this->pro_descricao = $row['pro_descricao'];
         $this->pro_preco = $row['pro_preco'];
+        $this->pro_url = $row['pro_url'];
     }
 
     // Atualizar produto
     public function update() {
-        $query = "UPDATE " . $this->table_name . " SET pro_nome = :nome, pro_descricao = :descricao, pro_preco = :preco WHERE pro_id = :id";
+        $query = "UPDATE " . $this->table_name . " SET pro_nome = :nome, pro_descricao = :descricao, pro_preco = :preco, pro_url = :url WHERE pro_id = :id";
         
         $stmt = $this->conn->prepare($query);
 
         $stmt->bindParam(":nome", $this->pro_nome);
         $stmt->bindParam(":descricao", $this->pro_descricao);
         $stmt->bindParam(":preco", $this->pro_preco);
+        $stmt->bindParam(":url", $this->pro_url);
         $stmt->bindParam(":id", $this->pro_id);
 
         if ($stmt->execute()) {
@@ -88,3 +92,4 @@ class Produto {
         return false;
     }
 }
+

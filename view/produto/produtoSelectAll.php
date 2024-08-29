@@ -32,6 +32,7 @@ if ($num > 0) {
     echo "<th>Descrição</th>";
     echo "<th>Preço</th>";
     echo "<th>Ações</th>";
+    echo "<th>url</th>";
     echo "</tr>";
 
     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
@@ -42,6 +43,7 @@ if ($num > 0) {
         echo "<td>{$pro_nome}</td>";
         echo "<td>{$pro_descricao}</td>";
         echo "<td>R$ {$pro_preco}</td>";
+        echo "<td>{$pro_url}</td>";
         echo "<td>";
         echo "<a href='produtoDetail.php?id={$pro_id}'>Detalhes</a> | ";
         echo "<a href='produtoUpdate.php?id={$pro_id}'>Editar</a> | ";
